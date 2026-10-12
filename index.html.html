@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#260817">
+<title>Your Boyfriend Misses You, Idiot ❤️‍🔥</title>
+<style>
+  :root { --pink:#ff72b6; --rose:#ffb6d7; --ink:#260817; --panel:#42142e; --cream:#fff3f8; }
+  * { box-sizing:border-box; }
+  body {
+    margin:0; min-height:100vh; color:var(--cream);
+    font-family: ui-rounded, "SF Pro Rounded", system-ui, -apple-system, sans-serif;
+    background: radial-gradient(circle at top, #70254d 0, #351027 45%, #170711 100%);
+    display:flex; justify-content:center; padding:18px 12px 32px;
+  }
+  .app { width:min(100%, 520px); }
+  .top { text-align:center; padding:12px 8px 18px; }
+  .eyebrow { text-transform:uppercase; letter-spacing:.18em; font-size:.7rem; color:var(--rose); font-weight:800; }
+  h1 { font-size:clamp(2rem, 9vw, 3.1rem); line-height:1.02; margin:12px 0; }
+  h1 span { color:var(--pink); }
+  .sub { color:#f5cddd; line-height:1.5; margin:0 auto; max-width:360px; }
+  .card { background:rgba(66,20,46,.88); border:1px solid rgba(255,182,215,.25); border-radius:25px; padding:22px; box-shadow:0 18px 55px #10030b80; }
+  .progress-wrap { height:6px; background:#6a294b; border-radius:20px; overflow:hidden; margin:4px 0 18px; }
+  .progress { height:100%; width:0; background:linear-gradient(90deg,#ff72b6,#ffd3e7); transition:width .3s ease; }
+  .meta { display:flex; justify-content:space-between; align-items:center; gap:8px; font-size:.78rem; color:#f6bad6; margin-bottom:16px; font-weight:700; }
+  h2 { font-size:1.5rem; line-height:1.2; margin:0 0 9px; }
+  .question { color:#f5cddd; margin:0 0 18px; line-height:1.5; }
+  .options { display:grid; gap:10px; }
+  button, input { font:inherit; }
+  .option {
+    display:flex; align-items:center; gap:12px; text-align:left; width:100%;
+    color:var(--cream); background:#57203e; border:1px solid #8e3d68;
+    padding:15px; border-radius:16px; cursor:pointer; transition:transform .12s, background .12s;
+  }
+  .option:hover { background:#6a2850; }
+  .option:active { transform:scale(.985); }
+  .emoji { font-size:1.35rem; }
+  .reply { margin-top:16px; padding:14px; border-radius:15px; background:#2c0b1d; color:#ffd3e7; line-height:1.5; display:none; }
+  .reply.show { display:block; animation:pop .25s ease; }
+  .next, .main-btn {
+    border:0; border-radius:999px; padding:14px 18px; font-weight:850; cursor:pointer;
+    color:#351027; background:linear-gradient(100deg,#ffb6d7,#ff72b6); width:100%; margin-top:14px;
+    box-shadow:0 8px 22px #ff72b633;
+  }
+  .next:disabled { opacity:.35; cursor:not-allowed; }
+  .note { text-align:center; color:#dca7c0; font-size:.78rem; line-height:1.5; margin:15px 8px 0; }
+  .final { text-align:center; }
+  .big-heart { font-size:3.5rem; margin:4px 0 10px; animation:beat 1.1s infinite; }
+  .final p { line-height:1.65; color:#f8d8e6; }
+  .callout { padding:16px; background:#2c0b1d; border:1px solid #8e3d68; border-radius:17px; margin-top:18px; }
+  .callout strong { display:block; font-size:1.1rem; margin-bottom:6px; }
+  .small { color:#dca7c0; font-size:.78rem; line-height:1.5; }
+  .hidden { display:none !important; }
+  .footer { text-align:center; color:#bd86a3; font-size:.72rem; padding:20px 0 0; }
+  input { width:100%; background:#2c0b1d; color:white; border:1px solid #8e3d68; border-radius:12px; padding:12px; margin-top:8px; outline:none; }
+  @keyframes beat { 0%,100%{transform:scale(1)} 12%{transform:scale(1.12)} 24%{transform:scale(1)} }
+  @keyframes pop { from{opacity:0;transform:translateY(5px)} to{opacity:1;transform:translateY(0)} }
+  @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none !important; transition:none !important; } }
+</style>
+</head>
+<body>
+<main class="app">
+  <header class="top">
+    <div class="eyebrow">A very serious investigation 😈</div>
+    <h1>Operation:<br><span>Your Boyfriend Misses You, Idiot</span> ❤️‍🔥</h1>
+    <p class="sub">Four levels of sass, flirting, and feelings. One final mission. No escaping the boyfriend jokes.</p>
+  </header>
+
+  <section class="card" id="game">
+    <div class="progress-wrap"><div class="progress" id="progress"></div></div>
+    <div class="meta"><span id="level">LEVEL 1 / 4</span><span>Be honest, princess 💋</span></div>
+    <h2 id="title">Still angry, princess? 😏</h2>
+    <p class="question" id="question">How are you planning to treat your favourite idiot?</p>
+    <div class="options" id="options"></div>
+    <div class="reply" id="reply" aria-live="polite"></div>
+    <button class="next" id="next" disabled>Next level →</button>
+  </section>
+
+  <section class="card final hidden" id="ending">
+    <div class="big-heart">💗</div>
+    <div class="eyebrow">Final level unlocked</div>
+    <h2>Enough hiding behind that attitude, baby. 😏</h2>
+    <p>You can be angry with me. You can tell me everything I did wrong. You can even scold me for an hour.</p>
+    <p>I don't want to just be the person who makes you smile. I want to understand your silence, respect your feelings, and keep choosing us when things get difficult. You don't have to pretend you're okay just to make me happy. ❤️</p>
+    <div class="callout">
+      <strong>📞 ONE FINAL OPTION</strong>
+      CALL YOUR HANDSOME IDIOT.
+      <div class="small">The game developer is clearly biased. 😂❤️</div>
+    </div>
+    <label for="phone" class="small" style="display:block;text-align:left;margin-top:18px">His phone number (with country code) — so the button can call him:</label>
+    <input id="phone" type="tel" inputmode="tel" placeholder="+1 204 555 0123" autocomplete="tel">
+    <button class="main-btn" id="call">Fineee, I'm calling my idiot ❤️</button>
+    <p class="small">If you don't want to enter a number, you can still use the button below to copy a message to send him.</p>
+    <button class="next" id="copy">Copy a final message 💌</button>
+    <div class="reply" id="copyreply" aria-live="polite"></div>
+    <button class="next" id="again" style="background:transparent;color:#ffd3e7;border:1px solid #8e3d68">Play again ↻</button>
+  </section>
+  <p class="note">Made for one very loved, occasionally very angry girl. ❤️<br>No pressure to forgive instantly—just a little game and a lot of love.</p>
+  <div class="footer">Made with love, teasing, and questionable boyfriend logic.</div>
+</main>
+<script>
+const levels = [
+  {title:"Still angry, princess? 😏", question:"How are you planning to treat your favourite idiot?", options:[
+    ["😤","Ignore him like you don't miss him","Oscar for best acting goes to you, madam. 🏆"],
+    ["🙄","Give him attitude until he melts","Your attitude is legendary. My taste in girls is questionable. 😮‍💨❤️"],
+    ["🥺","Admit you miss him a tiny bit","TINY BIT? Your secret is safe with me… for now. 😏💋"]
+  ]},
+  {title:"Imagine I'm right in front of you… 👀", question:"What's your first move, troublemaker?", options:[
+    ["😡","Scold him for upsetting me","Fair. I'll listen first and defend myself never. Okay, maybe a little. 😂❤️"],
+    ["🤭","Try not to smile at him","That smile is already snitching on you. 😌"],
+    ["🫂","Hug him and refuse to let go","Careful, baby. That's exactly where I want to be. 🫶"]
+  ]},
+  {title:"Night-time honesty check 💋", question:"When my name pops up on your phone at night…", options:[
+    ["🙄","I roll my eyes but open it","Eyes rolling, message opening. The evidence is overwhelming, your honour. 😂"],
+    ["🥰","I smile and pretend I didn't","Caught smiling at your own boyfriend. Criminal behaviour. 😏💗"],
+    ["🌙","I wish he were beside me","I'd sit beside you, hold your hand, and listen until you felt lighter. ❤️"]
+  ]},
+  {title:"Jokes aside, jaan… 🥹", question:"What do you need from me when you're upset?", options:[
+    ["👂","For him to really listen","I want to understand you, not just win an argument. ❤️"],
+    ["🤝","For us to fix things together","Less ego, more us. That's the plan, baby."],
+    ["💗","To feel loved even when I'm angry","You don't have to be happy every second to deserve love. I'll keep working on how I show up for you. 🫶"]
+  ]}
+];
+let current = 0;
+const $ = id => document.getElementById(id);
+function render() {
+  const item = levels[current];
+  $("level").textContent = `LEVEL ${current+1} / ${levels.length}`;
+  $("progress").style.width = `${current/levels.length*100}%`;
+  $("title").textContent = item.title;
+  $("question").textContent = item.question;
+  $("reply").className = "reply";
+  $("reply").textContent = "";
+  $("next").disabled = true;
+  $("next").textContent = current === levels.length-1 ? "Unlock the final level 🔓" : "Next level →";
+  $("options").innerHTML = "";
+  item.options.forEach(([emoji,label,reply]) => {
+    const btn = document.createElement("button");
+    btn.className = "option";
+    btn.innerHTML = `<span class="emoji">${emoji}</span><span>${label}</span>`;
+    btn.addEventListener("click", () => {
+      [...$("options").children].forEach(b => b.disabled = true);
+      btn.style.borderColor = "#ffb6d7";
+      btn.style.background = "#762850";
+      $("reply").textContent = reply;
+      $("reply").className = "reply show";
+      $("next").disabled = false;
+    });
+    $("options").appendChild(btn);
+  });
+}
+$("next").addEventListener("click", () => {
+  current++;
+  if (current >= levels.length) {
+    $("game").classList.add("hidden");
+    $("ending").classList.remove("hidden");
+    $("progress").style.width = "100%";
+  } else render();
+});
+$("call").addEventListener("click", () => {
+  const phone = $("phone").value.trim();
+  if (!phone) {
+    $("phone").focus();
+    $("phone").placeholder = "Enter his number first, baby ❤️";
+    return;
+  }
+  const cleaned = phone.replace(/[^\d+]/g, "");
+  if (cleaned.replace(/\D/g, "").length < 7) {
+    $("phone").focus();
+    $("phone").setCustomValidity("Enter a valid phone number, including country code if needed.");
+    $("phone").reportValidity();
+    $("phone").setCustomValidity("");
+    return;
+  }
+  window.location.href = "tel:" + cleaned;
+});
+$("copy").addEventListener("click", async () => {
+  const msg = "Baby, you can be angry with me and tell me where I went wrong. I don't want to win against you; I want us to understand each other. I love your smile, your softness, and even our difficult conversations. I won't promise perfection, but I will keep trying to understand you and treat your heart with care. Now call your idiot? ❤️📞";
+  const out = $("copyreply");
+  try {
+    await navigator.clipboard.writeText(msg);
+    out.textContent = "Copied! Now paste it into your chat with him. 💌";
+  } catch(e) {
+    out.textContent = msg;
+  }
+  out.className = "reply show";
+});
+$("again").addEventListener("click", () => {
+  current = 0;
+  $("ending").classList.add("hidden");
+  $("game").classList.remove("hidden");
+  render();
+  window.scrollTo({top:0,behavior:"smooth"});
+});
+render();
+</script>
+</body>
+</html>
